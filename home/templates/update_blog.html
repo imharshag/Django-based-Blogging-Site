@@ -1,20 +1,16 @@
 {% extends "base.html" %}
 
 {% block start %}
+
 <div class="container mt-5">
-    {% if blog_obj %}
-        <a href="{% url 'see_blog' %}" class="btn btn-warning">View Your Blog</a>
-        <h2>Edit vibZ</h2>
-    {% else %}
-        <h2>Create a new vibZ</h2>
-    {% endif %}
-    
+
+    <a href="{% url 'see_blog' %}" class="btn btn-warning">Back to Blogs</a>
+
     <form method="post" class="mt-5 pt-5 mb-5 pb-5" enctype="multipart/form-data">
         {% csrf_token %}
-        
         <div class="row">
             <div class="col-md-12">
-                <label>Enter vibZ Title</label>
+                <label>Update Blog Title</label>
                 <input type="text" value="{{ blog_obj.title }}" class="form-control" placeholder="Enter title" name="title">
             </div>
 
@@ -27,11 +23,13 @@
                 <label>Update Image</label>
                 <input type="file" name="image" class="form-control">
             </div>
+
         </div>
 
-        <button type="submit" class="btn btn-primary mt-4">
-            {% if blog_obj %}Update{% else %}Create{% endif %} vibZ
-        </button>
+        <button type="submit" class="btn btn-primary mt-4">Update Blog</button>
+
     </form>
+
 </div>
+
 {% endblock %}
