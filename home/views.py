@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
-
-# Create your views here.
-
 from .form import *
+from .models import BlogModel
 from django.contrib.auth import logout
 
 
@@ -11,8 +9,9 @@ def logout_view(request):
     return redirect('/')
 
 
+
 def home(request):
-    context = {'blogs': BlogModel.objects.all()}
+    context = {'blogs': BlogModel.objects.order_by('-created_at')}
     return render(request, 'home.html', context)
 
 
@@ -72,7 +71,6 @@ def add_blog(request):
 def blog_update(request, slug):
     context = {}
     try:
-
         blog_obj = BlogModel.objects.get(slug=slug)
 
         if blog_obj.user != request.user:
