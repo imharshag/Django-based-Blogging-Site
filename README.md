@@ -1,4 +1,4 @@
-# **Django-Based Blogging Platform **
+# Django-Based Blogging Platform 
 
  ***Overview:***
 
