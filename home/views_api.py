@@ -4,54 +4,47 @@ from django.contrib.auth.models import User
 from .models import Profile
 from .helpers import *
 from django.contrib.auth import authenticate, login
-
+from django.contrib import messages
 
 class LoginView(APIView):
 
     def post(self, request):
-        response = {}
-        response['status'] = 500
-        response['message'] = 'Something went wrong'
         try:
             data = request.data
 
             if data.get('username') is None:
-                response['message'] = 'key username not found'
-                raise Exception('key username not found')
+                messages.error(request, 'Username not provided')
+                raise Exception('Username not provided')
 
             if data.get('password') is None:
-                response['message'] = 'key password not found'
-                raise Exception('key password not found')
+                messages.error(request, 'Password not provided')
+                raise Exception('Password not provided')
 
-            check_user = User.objects.filter(
-                username=data.get('username')).first()
+            check_user = User.objects.filter(username=data.get('username')).first()
 
             if check_user is None:
-                response['message'] = 'invalid username , user not found'
-                raise Exception('invalid username not found')
+                messages.error(request, 'Invalid username, user not found')
+                raise Exception('Invalid username, user not found')
 
             if not Profile.objects.filter(user=check_user).first().is_verified:
-                response['message'] = 'your profile is not verified'
-                raise Exception('profile not verified')
+                messages.error(request, 'Your profile is not verified')
+                raise Exception('Profile not verified')
 
-            user_obj = authenticate(username=data.get('username'),
-                                    password=data.get('password'))
+            user_obj = authenticate(username=data.get('username'), password=data.get('password'))
             if user_obj:
                 login(request, user_obj)
-                response['status'] = 200
-                response['message'] = 'Welcome'
+                messages.success(request, 'Welcome')
+                return Response({'status': 200, 'message': 'Welcome'})
             else:
-                response['message'] = 'invalid password'
-                raise Exception('invalid password')
-
+                messages.error(request, 'Invalid password')
+                raise Exception('Invalid password')
 
         except Exception as e:
             print(e)
-
-        return Response(response)
-
+            return Response({'status': 500, 'message': 'Something went wrong'})
 
 LoginView = LoginView.as_view()
+
 
 
 class RegisterView(APIView):
