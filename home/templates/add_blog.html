@@ -11,20 +11,11 @@
           enctype="multipart/form-data" action="{% url 'add_blog' %}">
         {% csrf_token %}
         <div class="row">
-            <div class="col-md-12 py-4">
-                <label>Enter Category</label>
-                <input type="text" class="form-control" placeholder="Enter Category" name="category">
-            </div>
 
             <div class="col-md-12">
                 {{ form.media }}
                 {{ form.as_p }}
             </div>
-
-            <div class="col-md-12">
-                <input type="file" name="image" class="form-control" >
-            </div>
-
         </div>
 
         <button type="submit" class="btn btn-primary mt-4">Create Blog</button>

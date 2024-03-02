@@ -1,26 +1,24 @@
 {% extends "base.html" %}
 
 {% block start %}
-
-
 <section>
     <div class="container">
-       
-        <div class="row text-center">
-            <div class="col-xl-10 mx-auto"><img class="img-fluid mb-5"
-                    src="/media/{{blog_obj.image}}"
-                    alt=""></div>
-        </div>
         <div class="row">
             <div class="col-xl-8 col-lg-10 mx-auto">
-                <div class="text-content">
-                    {{blog_obj.content|safe}}
+                <div class="mt-5"></div>
+                <!-- Title -->
+                <h1 class="text-center" style="max-width: 100%; overflow-wrap: break-word;">{{ blog_obj.title }}</h1>
+                <div class="d-flex justify-content-center mb-4">
+                    <img class="rounded img-fluid"
+                        src="/media/{{ blog_obj.image }}"
+                        alt="">
+                </div>
+                <!-- Content -->
+                <div class="text-content" style="max-width: 100%; overflow-wrap: break-word;">
+                    {{ blog_obj.content|safe }}
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-
 {% endblock %}

@@ -43,25 +43,26 @@ def see_blog(request):
 
 
 def add_blog(request):
-    context = {'form': BlogForm}
+    context = {}
     try:
         if request.method == 'POST':
-            form = BlogForm(request.POST)
-            print(request.FILES)
-            image = request.FILES.get('image', '')
-            title = request.POST.get('title')
-            user = request.user
-
+            form = BlogForm(request.POST, request.FILES)
             if form.is_valid():
-                print('Valid')
+                title = form.cleaned_data['title']
                 content = form.cleaned_data['content']
+                image = form.cleaned_data['image'] 
 
-            blog_obj = BlogModel.objects.create(
-                user=user, title=title,
-                content=content, image=image
-            )
-            print(blog_obj)
-            return redirect('/add-blog/')
+                user = request.user
+                blog_obj = BlogModel.objects.create(
+                    user=user, title=title,
+                    content=content, image=image
+                )
+                print(blog_obj)
+                return redirect('/')  
+        else:
+            form = BlogForm()  
+
+        context['form'] = form
     except Exception as e:
         print(e)
 
@@ -72,31 +73,28 @@ def blog_update(request, slug):
     context = {}
     try:
         blog_obj = BlogModel.objects.get(slug=slug)
-
         if blog_obj.user != request.user:
             return redirect('/')
 
-        initial_dict = {'content': blog_obj.content}
-        form = BlogForm(initial=initial_dict)
         if request.method == 'POST':
-            form = BlogForm(request.POST)
-            print(request.FILES)
-            image = request.FILES['image']
-            title = request.POST.get('title')
-            user = request.user
-
+            form = BlogForm(request.POST, request.FILES, instance=blog_obj) 
             if form.is_valid():
-                content = form.cleaned_data['content']
-
-            blog_obj = BlogModel.objects.create(
-                user=user, title=title,
-                content=content, image=image
-            )
+                form.save()
+                # Set success message
+                context['success_message'] = "Blog updated successfully!"
+                # Redirect to home page or any other appropriate page after successful update
+                return redirect('/')  
+        else:
+            form = BlogForm(instance=blog_obj)
 
         context['blog_obj'] = blog_obj
         context['form'] = form
+    except BlogModel.DoesNotExist:
+        context['error_message'] = "Blog does not exist"
     except Exception as e:
+        # Handle any other exceptions
         print(e)
+        context['error_message'] = "An error occurred"
 
     return render(request, 'update_blog.html', context)
 

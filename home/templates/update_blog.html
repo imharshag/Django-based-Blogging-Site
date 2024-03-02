@@ -1,35 +1,24 @@
 {% extends "base.html" %}
 
 {% block start %}
+</style>
+<section class="mt-2 pt-2 pb-5 mb-5">
+<h1 class="mb-2 mt-5 container animated-heading">Update Blog here</h1>
+<div class="container mt-4">
+    <a href="{% url 'see_blog' %}" class="btn btn-warning">View Your Blogs</a>
 
-<div class="container mt-5">
-
-    <a href="{% url 'see_blog' %}" class="btn btn-warning">View Your blogs</a>
-
-    <form method="post" class="pt-5 mb-5 pb-5" enctype="multipart/form-data">
+    <form method="post" class="pt-2 mb-2 pb-5" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row">
-            <div class="col-md-12">
-                <label>Enter blog title</label>
-                <input type="text" value="{{blog_obj.title}}" class="form-control" placeholder="Enter title" name="title">
-            </div>
-
+            
             <div class="col-md-12 mt-4">
                 {{form.media}}
                 {{form.as_p}}
             </div>
 
-            <div class="col-md-12">
-
-                <input type="file" name="image" class="form-control" >
-                </div>
-
-        </div>
-
         <button type="submit" class="btn btn-primary mt-4">Update Blog</button>
 
     </form>
-
 </div>
 
 {% endblock %}

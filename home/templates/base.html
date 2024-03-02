@@ -21,6 +21,7 @@
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="/media/css/default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
+    <link href="/path/to/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/media/css/custom.css">
     <script src="/media/js/main.js"> </script>
 </head>
@@ -60,7 +61,7 @@
 
                         {% else %}
                         <li class="nav-item mt-3 animate-heading mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block">
-                            <a class="btn btn-primary" href="{% url 'login_view' %}">Add Blog</a>
+                            <a class="btn btn-info" href="{% url 'login_view' %}">Add Blog</a>
                         </li>
 
                         {% endif %}
