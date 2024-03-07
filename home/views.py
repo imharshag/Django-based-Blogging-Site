@@ -2,22 +2,32 @@ from django.shortcuts import render, redirect
 from .form import *
 from .models import BlogModel
 from django.contrib.auth import logout
+from django.contrib import messages
 
 
 def logout_view(request):
     logout(request)
+    messages.success(request, 'You have been successfully logged out.')
     return redirect('/')
-
-
 
 def home(request):
     context = {'blogs': BlogModel.objects.order_by('-created_at')}
     return render(request, 'home.html', context)
 
 
-def login_view(request):
-    return render(request, 'login.html')
+from django.contrib.auth import authenticate, login
 
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'You have successfully logged in.')
+            return redirect('home')  # Adjust 'home' to the URL name of your home page
+    return render(request, 'login.html')
 
 def blog_detail(request, slug):
     context = {}
@@ -42,6 +52,8 @@ def see_blog(request):
     return render(request, 'see_blog.html', context)
 
 
+from django.contrib import messages
+
 def add_blog(request):
     context = {}
     try:
@@ -57,14 +69,18 @@ def add_blog(request):
                     user=user, title=title,
                     content=content, image=image
                 )
-                print(blog_obj)
+                # Set success message
+                messages.success(request, "Blog added successfully!")
                 return redirect('/')  
         else:
             form = BlogForm()  
 
         context['form'] = form
     except Exception as e:
+        # Handle any other exceptions
         print(e)
+        # Set error message
+        messages.error(request, "An error occurred while adding the blog.")
 
     return render(request, 'add_blog.html', context)
 
@@ -81,7 +97,7 @@ def blog_update(request, slug):
             if form.is_valid():
                 form.save()
                 # Set success message
-                context['success_message'] = "Blog updated successfully!"
+                messages.success(request, "Blog updated successfully!")
                 # Redirect to home page or any other appropriate page after successful update
                 return redirect('/')  
         else:
@@ -99,22 +115,31 @@ def blog_update(request, slug):
     return render(request, 'update_blog.html', context)
 
 
+from django.contrib import messages
+
 def blog_delete(request, id):
     try:
         blog_obj = BlogModel.objects.get(id=id)
 
         if blog_obj.user == request.user:
             blog_obj.delete()
+            # Set success message
+            messages.success(request, "Blog deleted successfully")
 
+    except BlogModel.DoesNotExist:
+        messages.error(request, "Blog does not exist")
     except Exception as e:
+        # Handle any other exceptions
         print(e)
+        messages.error(request, "An error occurred")
 
     return redirect('/see-blog/')
 
 
+
 def register_view(request):
     return render(request, 'register.html')
-
+    return redirect('/see-blog/')
 
 def verify(request, token):
     try:
