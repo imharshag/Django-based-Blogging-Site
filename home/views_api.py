@@ -52,11 +52,7 @@ class LoginView(APIView):
 
         return Response(response)
 
-
 LoginView = LoginView.as_view()
-
-
-from django.shortcuts import redirect
 
 class RegisterView(APIView):
 
