@@ -1,10 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 from django.contrib.auth.models import User
 from .models import Profile
+from django.contrib import messages
 from .helpers import *
 from django.contrib.auth import authenticate, login
-
 
 class LoginView(APIView):
 
@@ -40,6 +41,7 @@ class LoginView(APIView):
                 login(request, user_obj)
                 response['status'] = 200
                 response['message'] = 'Welcome'
+                messages.success(request, 'Login successful!')
             else:
                 response['message'] = 'invalid password'
                 raise Exception('invalid password')
@@ -53,6 +55,8 @@ class LoginView(APIView):
 
 LoginView = LoginView.as_view()
 
+
+from django.shortcuts import redirect
 
 class RegisterView(APIView):
 
@@ -68,23 +72,21 @@ class RegisterView(APIView):
             if data.get('password') is None:
                 response['message'] = 'key password not found'
                 raise Exception('key password not found')
-            check_user = User.objects.filter(
-                username=data.get('username')).first()
-            if check_user:
-                response['message'] = 'username  already taken'
-                raise Exception('username  already taken')
 
-            user_obj = User.objects.create(email=data.get('username'),
-                                           username=data.get('username'))
+            check_user = User.objects.filter(username=data.get('username')).first()
+            if check_user:
+                response['message'] = 'username already taken'
+                raise Exception('username already taken')
+
+            user_obj = User.objects.create(email=data.get('username'), username=data.get('username'))
             user_obj.set_password(data.get('password'))
             user_obj.save()
             token = generate_random_string(20)
-            # set verified user
-            Profile.objects.create(user=user_obj, token=token,
-                                   is_verified=True)
-            # send_mail_to_user(token , data.get('username'))
-            response['message'] = 'User created '
-            response['status'] = 200
+            Profile.objects.create(user=user_obj, token=token, is_verified=True)
+
+            response['message'] = 'User created successfully'
+            response['status'] = status.HTTP_201_CREATED 
+
         except Exception as e:
             print(e)
 
