@@ -32,7 +32,7 @@ To run the Django-based blogging platform locally, follow these steps:
 - Access the platform in your web browser at http://127.0.0.1:8000/.
 - Use the admin panel at http://127.0.0.1:8000/admin/ to manage content and user accounts.
 
-For inquiries or feedback, please contact **[Harsha G](mailto:harshag3103@gmail.com)**.
+For inquiries or feedback, please contact **[Harsha G](mailto:harshag3106@gmail.com)**.
 
 ***Conclusion:***
 🛠️📰 
