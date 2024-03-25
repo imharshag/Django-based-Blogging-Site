@@ -34,7 +34,7 @@ To run the Django-based blogging platform locally, follow these steps:
 
 For inquiries or feedback, please contact **[Harsha G](mailto:harshag3106@gmail.com)**.
 
-***Conclusion:***
+**Conclusion:**
 🛠️📰 
 
 The development of this Django-based blogging platform showcases the integration of cutting-edge technologies to deliver a user-friendly and feature-rich blogging experience.
