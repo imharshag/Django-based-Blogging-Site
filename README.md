@@ -6,7 +6,7 @@
 
 **Key Features:**
 - ***Responsive Design***: Implemented HTML and Bootstrap to create a responsive layout, enhancing accessibility across various devices. 📱💻
-- **CRUD Operations***: Utilized Django Admin for seamless CRUD (Create, Read, Update, Delete) operations, simplifying blog management tasks. ✏️🗑️
+- ***CRUD Operations***: Utilized Django Admin for seamless CRUD (Create, Read, Update, Delete) operations, simplifying blog management tasks. ✏️🗑️
 - ***Authentication***: Implemented Django's authentication system to secure user accounts and manage access control. 🔐
 - ***Enhanced Content Creation***: Integrated Froala Editor to empower users with advanced content creation capabilities, including rich text editing. 📝✨
 - ***Dynamic Image Processing***: Leveraged Pillow library for dynamic image processing, enabling efficient handling and manipulation of images within the platform. 🖼️🔄
