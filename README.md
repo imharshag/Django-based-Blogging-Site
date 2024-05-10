@@ -18,7 +18,7 @@
 - Froala Editor 📝
 - Pillow 🖼️
 
-**Running the Platform Locally**
+**Running the Platform Locally:**
 
 To run the Django-based blogging platform locally, follow these steps:
 
