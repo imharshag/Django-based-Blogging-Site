@@ -4,6 +4,8 @@
 
 🌐📝 Developed a robust blogging platform using Django, integrating responsive design principles to ensure optimal user experience across devices.
 
+  ![Blogging Platform](https://harsha-g.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDjangoBasedBloggingPlatform.fa427582.png&w=640&q=75)
+
 **Key Features:**
 - ***Responsive Design***: Implemented HTML and Bootstrap to create a responsive layout, enhancing accessibility across various devices. 📱💻
 - ***CRUD Operations***: Utilized Django Admin for seamless CRUD (Create, Read, Update, Delete) operations, simplifying blog management tasks. ✏️🗑️
@@ -31,6 +33,8 @@ To run the Django-based blogging platform locally, follow these steps:
 - Start the Django development server (python manage.py runserver).
 - Access the platform in your web browser at http://127.0.0.1:8000/.
 - Use the admin panel at http://127.0.0.1:8000/admin/ to manage content and user accounts.
+
+**Contact:**
 
 For inquiries or feedback, please contact **[Harsha G](mailto:harshag3106@gmail.com)**.
 
