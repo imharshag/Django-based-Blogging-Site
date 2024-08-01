@@ -4,6 +4,8 @@
 
 🌐📝 Developed a robust blogging platform using Django, integrating responsive design principles to ensure optimal user experience across devices.
 
+  ![Blogging Platform](https://harshag.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDjango_Based_Blogging_Platform.608e0b6b.png&w=640&q=75)
+
 **Key Features:**
 - ***Responsive Design***: Implemented HTML and Bootstrap to create a responsive layout, enhancing accessibility across various devices. 📱💻
 - **CRUD Operations***: Utilized Django Admin for seamless CRUD (Create, Read, Update, Delete) operations, simplifying blog management tasks. ✏️🗑️
