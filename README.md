@@ -6,20 +6,6 @@
 
   ![Blogging Platform](https://harshag.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FDjango_Based_Blogging_Platform.608e0b6b.png&w=640&q=75)
 
-### Key Features
-- ***Responsive Design***: Implemented HTML and Bootstrap to create a responsive layout, enhancing accessibility across various devices. 📱💻
-- ***CRUD Operations***: Utilized Django Admin for seamless CRUD (Create, Read, Update, Delete) operations, simplifying blog management tasks. ✏️🗑️
-- ***Authentication***: Implemented Django's authentication system to secure user accounts and manage access control. 🔐
-- ***Enhanced Content Creation***: Integrated Froala Editor to empower users with advanced content creation capabilities, including rich text editing. 📝✨
-- ***Dynamic Image Processing***: Leveraged Pillow library for dynamic image processing, enabling efficient handling and manipulation of images within the platform. 🖼️🔄
-
-### Technologies Used
-- Django 🕸️
-- HTML 🌐
-- Bootstrap 🅱️
-- Froala Editor 📝
-- Pillow 🖼️
-
 ### Running the Platform Locally
 
 To run the Django-based blogging platform locally, follow these steps:
@@ -36,14 +22,4 @@ To run the Django-based blogging platform locally, follow these steps:
 
 ### Contact
 
-For inquiries or feedback, please contact **[Harsha G](mailto:harshag3106@gmail.com)**.
-
-
-### Contributing
-🔩📝 Contributions are encouraged! There are various ways you can contribute to this project:
-
-- ***Report an Issue***: Encountered a bug or have an idea for an improvement? Open an issue to discuss it.
-- ***Submit a Pull Request***: Have code changes you'd like to propose? Submit a pull request for review.
-- ***Offer Feedback***: Not a coder? No problem! Your feedback on usability and features is invaluable.
-  
-Let's collaborate to enhance this project together!
+For inquiries or feedback, please contact **[Vinay K](mailto:vinay2182001@gmail.com)**.
